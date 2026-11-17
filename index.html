@@ -1,0 +1,266 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home - SIFORA</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', Arial, sans-serif;
+}
+
+body {
+    background: #f5f7fc;
+    color: #202b43;
+}
+
+header {
+    background: white;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px #00000008;
+}
+
+.logo {
+    color: #315ee8;
+    font-size: 23px;
+    font-weight: 800;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #52617b;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+nav a:hover {
+    color: #315ee8;
+}
+
+.tombol {
+    background: #315ee8;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 9px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.hero {
+    background: linear-gradient(135deg, #193b91, #386ef0);
+    color: white;
+    padding: 85px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+.hero h1 {
+    font-size: 42px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    color: #e0e9ff;
+    line-height: 1.8;
+    font-size: 14px;
+    margin-bottom: 28px;
+}
+
+.hero-card {
+    background: #ffffff18;
+    border: 1px solid #ffffff35;
+    padding: 28px;
+    border-radius: 17px;
+    min-width: 280px;
+}
+
+.hero-card h3 {
+    margin-bottom: 18px;
+}
+
+.hero-card p {
+    margin: 12px 0;
+}
+
+.section {
+    padding: 55px 7%;
+    text-align: center;
+}
+
+.section h2 {
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+
+.section-desc {
+    color: #8490a5;
+    font-size: 13px;
+    margin-bottom: 30px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    border: 1px solid #e9edf5;
+    padding: 25px;
+    border-radius: 14px;
+    text-align: left;
+}
+
+.card h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #8490a5;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+footer {
+    background: white;
+    border-top: 1px solid #e9edf5;
+    padding: 22px;
+    text-align: center;
+    color: #8490a5;
+    font-size: 12px;
+}
+
+@media(max-width: 700px) {
+    header {
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 13px;
+    }
+
+    .hero {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 55px 7%;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .hero-card {
+        width: 100%;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">SIFORA</div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="app.html" class="tombol">Masuk Aplikasi</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Fasilitas Terawat, Lingkungan Lebih Nyaman.</h1>
+
+        <p>
+            SIFORA merupakan sistem informasi fasilitas dan pelaporan
+            yang membantu pengguna menyampaikan laporan kerusakan
+            fasilitas, memantau status laporan, dan mengelola informasi
+            fasilitas dengan lebih mudah.
+        </p>
+
+        <a href="app.html" class="tombol">Buka Aplikasi →</a>
+    </div>
+
+    <div class="hero-card">
+        <h3>Fitur SIFORA</h3>
+        <p>✓ Pelaporan kerusakan fasilitas</p>
+        <p>✓ Unggah foto fasilitas</p>
+        <p>✓ Pemantauan status laporan</p>
+        <p>✓ Pengelolaan laporan</p>
+    </div>
+</section>
+
+<section class="section">
+    <h2>Layanan Utama</h2>
+    <p class="section-desc">
+        Beberapa fitur yang tersedia dalam SIFORA.
+    </p>
+
+    <div class="cards">
+        <div class="card">
+            <h3>＋ Buat Laporan</h3>
+            <p>
+                Pengguna dapat mengisi informasi fasilitas
+                yang mengalami kerusakan.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>▤ Pantau Laporan</h3>
+            <p>
+                Pengguna dapat melihat riwayat dan perkembangan
+                status laporan.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>✓ Kelola Laporan</h3>
+            <p>
+                Admin dapat melihat dan memperbarui status
+                laporan fasilitas.
+            </p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    © 2026 SIFORA - Sistem Informasi Fasilitas dan Pelaporan
+</footer>
+
+</body>
+</html>

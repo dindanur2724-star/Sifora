@@ -1,0 +1,2198 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIFORA - Sistem Informasi Fasilitas</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --primary: #315ee8;
+  --primary-dark: #2349c5;
+  --light-blue: #edf2ff;
+  --background: #f5f7fc;
+  --white: #ffffff;
+  --text: #202b43;
+  --muted: #8490a5;
+  --border: #e9edf5;
+  --green: #16a779;
+  --orange: #e99a36;
+  --red: #e45c66;
+  --sidebar: #172b55;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', Arial, sans-serif;
+}
+
+body {
+  background: var(--background);
+  color: var(--text);
+}
+
+button, input, select, textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ================= LOGIN ================= */
+
+.login-page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  background: white;
+}
+
+.login-banner {
+  background: linear-gradient(145deg, #193b91, #386ef0);
+  color: white;
+  padding: 65px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  position: relative;
+}
+
+.login-banner::before,
+.login-banner::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: #ffffff12;
+}
+
+.login-banner::before {
+  width: 420px;
+  height: 420px;
+  right: -160px;
+  top: -130px;
+}
+
+.login-banner::after {
+  width: 330px;
+  height: 330px;
+  left: -150px;
+  bottom: -130px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 26px;
+  font-weight: 800;
+  position: relative;
+  z-index: 1;
+}
+
+.logo-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: white;
+  color: var(--primary);
+  font-size: 25px;
+  font-weight: 800;
+}
+
+.banner-content {
+  max-width: 530px;
+  position: relative;
+  z-index: 1;
+}
+
+.banner-content .eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  opacity: .8;
+  margin-bottom: 20px;
+}
+
+.banner-content h1 {
+  font-size: clamp(32px, 4vw, 52px);
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.banner-content p {
+  line-height: 1.8;
+  color: #e0e9ff;
+  font-size: 14px;
+  max-width: 430px;
+}
+
+.banner-features {
+  display: grid;
+  gap: 15px;
+  margin-top: 35px;
+}
+
+.banner-feature {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  color: #f0f4ff;
+}
+
+.feature-check {
+  width: 27px;
+  height: 27px;
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+  background: #ffffff20;
+}
+
+.banner-footer {
+  font-size: 12px;
+  color: #d2dfff;
+  position: relative;
+  z-index: 1;
+}
+
+.login-side {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 35px;
+}
+
+.login-box {
+  width: 100%;
+  max-width: 390px;
+}
+
+.login-box .small-logo {
+  display: none;
+}
+
+.login-box h2 {
+  font-size: 29px;
+  margin-bottom: 9px;
+}
+
+.login-description {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.field {
+  margin-bottom: 18px;
+}
+
+.field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 9px;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  outline: none;
+  background: white;
+  color: var(--text);
+  font-size: 13px;
+  transition: .2s;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px #315ee814;
+}
+
+.field textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.primary-btn {
+  padding: 13px 18px;
+  border-radius: 10px;
+  background: var(--primary);
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  transition: .2s;
+}
+
+.primary-btn:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+.login-submit {
+  width: 100%;
+  margin-top: 5px;
+}
+
+.login-error {
+  color: var(--red);
+  font-size: 12px;
+  margin-top: 12px;
+}
+
+.demo-account {
+  background: #f1f5ff;
+  border: 1px solid #e2eaff;
+  padding: 15px;
+  border-radius: 11px;
+  margin-top: 25px;
+  font-size: 12px;
+  line-height: 1.9;
+  color: #5c6c8b;
+}
+
+.demo-account strong {
+  color: #3154b5;
+}
+
+/* ================= APPLICATION ================= */
+
+.app {
+  min-height: 100vh;
+  display: flex;
+}
+
+.sidebar {
+  width: 250px;
+  min-height: 100vh;
+  background: var(--sidebar);
+  color: white;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  padding: 26px 17px;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+}
+
+.sidebar .logo {
+  padding: 0 8px;
+  margin-bottom: 43px;
+  font-size: 23px;
+}
+
+.sidebar .logo-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+}
+
+.menu-label {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: #8c9dc0;
+  font-weight: 700;
+  padding: 0 12px;
+  margin-bottom: 13px;
+}
+
+.nav-menu {
+  display: grid;
+  gap: 7px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 14px;
+  color: #c0cce4;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.nav-item.active {
+  background: #315ee8;
+  color: white;
+}
+
+.nav-item:hover {
+  background: #ffffff15;
+  color: white;
+}
+
+.nav-icon {
+  width: 22px;
+  text-align: center;
+  font-size: 17px;
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+  border-top: 1px solid #ffffff20;
+  padding-top: 18px;
+}
+
+.account-box {
+  background: #ffffff10;
+  border-radius: 11px;
+  padding: 12px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 13px;
+}
+
+.avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 10px;
+  background: #dbe7ff;
+  color: #315ee8;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+}
+
+.account-info strong {
+  display: block;
+  font-size: 12px;
+}
+
+.account-info span {
+  color: #aebedc;
+  font-size: 10px;
+  display: block;
+  margin-top: 4px;
+}
+
+.logout-btn {
+  width: 100%;
+  padding: 12px;
+  color: #ffd5d5;
+  background: #ffffff10;
+  border-radius: 9px;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.logout-btn:hover {
+  background: #e45c6630;
+}
+
+/* ================= MAIN ================= */
+
+.main-area {
+  margin-left: 250px;
+  width: calc(100% - 250px);
+  min-height: 100vh;
+}
+
+.topbar {
+  height: 75px;
+  background: white;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 35px;
+}
+
+.topbar-title {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.online-dot {
+  width: 8px;
+  height: 8px;
+  background: #21b983;
+  border-radius: 50%;
+}
+
+.content {
+  padding: 32px 35px;
+  max-width: 1500px;
+  margin: auto;
+}
+
+.welcome {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 27px;
+}
+
+.welcome h1 {
+  font-size: 25px;
+  margin-bottom: 8px;
+  letter-spacing: -.6px;
+}
+
+.welcome p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.date-label {
+  color: #65738e;
+  font-size: 12px;
+  background: white;
+  border: 1px solid var(--border);
+  padding: 11px 14px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+/* ================= STATISTICS ================= */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 25px;
+}
+
+.stat-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 19px;
+  box-shadow: 0 4px 15px #263d6806;
+}
+
+.stat-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stat-top p {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.stat-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+}
+
+.blue-bg { background: #edf2ff; color: #315ee8; }
+.orange-bg { background: #fff5e9; color: #e99a36; }
+.green-bg { background: #e9f9f2; color: #16a779; }
+.red-bg { background: #fff0f1; color: #e45c66; }
+
+.stat-number {
+  font-size: 29px;
+  font-weight: 800;
+  margin-top: 14px;
+  color: #25344f;
+}
+
+/* ================= PANELS ================= */
+
+.panel {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 23px;
+  margin-bottom: 23px;
+  box-shadow: 0 4px 15px #263d6806;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.panel-header h2 {
+  font-size: 16px;
+}
+
+.panel-header p {
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 5px;
+}
+
+/* ================= FORM ================= */
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 18px;
+}
+
+.form-field {
+  margin-bottom: 17px;
+}
+
+.form-field label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  font-size: 12px;
+  outline: none;
+  background: white;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  border-color: var(--primary);
+}
+
+.form-field textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.full {
+  grid-column: 1 / -1;
+}
+
+.upload-hint {
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 7px;
+}
+
+.preview {
+  display: block;
+  max-width: 190px;
+  max-height: 140px;
+  border-radius: 10px;
+  margin-top: 12px;
+  object-fit: cover;
+}
+
+.form-message {
+  color: var(--green);
+  font-size: 12px;
+  margin-top: 12px;
+}
+
+/* ================= FILTER ================= */
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.filter-row input,
+.filter-row select {
+  padding: 11px 12px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  outline: none;
+  background: white;
+  font-size: 12px;
+}
+
+.filter-row input {
+  flex: 1;
+  min-width: 180px;
+}
+
+/* ================= REPORT CARD ================= */
+
+.report-list {
+  display: grid;
+  gap: 13px;
+}
+
+.report-card {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: .2s;
+}
+
+.report-card:hover {
+  border-color: #c8d5ff;
+  box-shadow: 0 5px 15px #315ee80c;
+}
+
+.report-image {
+  width: 112px;
+  height: 112px;
+  border-radius: 10px;
+  object-fit: cover;
+  background: #eef2f8;
+  flex-shrink: 0;
+}
+
+.report-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.report-body h3 {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.report-details {
+  color: #77849a;
+  font-size: 11px;
+  line-height: 1.9;
+  overflow-wrap: anywhere;
+}
+
+.report-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 10px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 6px 9px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 700;
+  background: #edf2ff;
+  color: #315ee8;
+}
+
+.tag-waiting {
+  background: #fff4df;
+  color: #b87919;
+}
+
+.tag-process {
+  background: #edf2ff;
+  color: #315ee8;
+}
+
+.tag-done {
+  background: #e8f8f1;
+  color: #168b62;
+}
+
+.tag-rejected {
+  background: #fff0f1;
+  color: #d74d59;
+}
+
+.status-select {
+  padding: 9px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-top: 12px;
+  font-size: 11px;
+  background: white;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px 15px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.empty-icon {
+  font-size: 35px;
+  margin-bottom: 12px;
+}
+
+/* ================= FOOTER ================= */
+
+.footer {
+  padding: 22px 35px;
+  border-top: 1px solid var(--border);
+  color: #9aa5b5;
+  font-size: 11px;
+  text-align: center;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width: 1000px) {
+  .sidebar {
+    width: 215px;
+  }
+
+  .main-area {
+    margin-left: 215px;
+    width: calc(100% - 215px);
+  }
+
+  .content {
+    padding: 25px 20px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media(max-width: 700px) {
+  .login-page {
+    display: block;
+    background: var(--background);
+    padding: 20px;
+  }
+
+  .login-banner {
+    display: none;
+  }
+
+  .login-side {
+    min-height: calc(100vh - 40px);
+    padding: 10px;
+  }
+
+  .login-box .small-logo {
+    display: flex;
+    margin-bottom: 35px;
+  }
+
+  .app {
+    display: block;
+  }
+
+  .sidebar {
+    position: relative;
+    width: 100%;
+    min-height: auto;
+    padding: 15px;
+  }
+
+  .sidebar .logo {
+    margin-bottom: 15px;
+  }
+
+  .menu-label {
+    display: none;
+  }
+
+  .nav-menu {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .nav-item {
+    padding: 10px;
+    font-size: 11px;
+  }
+
+  .sidebar-bottom {
+    margin-top: 15px;
+    padding-top: 12px;
+  }
+
+  .account-box {
+    display: none;
+  }
+
+  .logout-btn {
+    text-align: center;
+  }
+
+  .main-area {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .topbar {
+    height: 60px;
+    padding: 0 18px;
+  }
+
+  .content {
+    padding: 23px 15px;
+  }
+
+  .welcome {
+    display: block;
+  }
+
+  .date-label {
+    display: inline-block;
+    margin-top: 13px;
+  }
+
+  .stats-grid {
+    gap: 10px;
+  }
+
+  .stat-card {
+    padding: 14px;
+  }
+
+  .stat-number {
+    font-size: 24px;
+  }
+
+  .panel {
+    padding: 17px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .full {
+    grid-column: auto;
+  }
+
+  .report-card {
+    flex-direction: column;
+  }
+
+  .report-image {
+    width: 100%;
+    height: 180px;
+  }
+
+  .filter-row input {
+    min-width: 100%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= HALAMAN LOGIN ================= -->
+
+<section id="loginPage" class="login-page">
+
+  <div class="login-banner">
+
+    <div class="logo">
+      <div class="logo-icon">S</div>
+      <span>SIFORA</span>
+    </div>
+
+    <div class="banner-content">
+
+      <div class="eyebrow">FACILITY REPORTING SYSTEM</div>
+
+      <h1>Fasilitas Terawat, Lingkungan Lebih Nyaman.</h1>
+
+      <p>
+        Platform pelaporan kerusakan fasilitas yang membantu
+        proses penyampaian laporan, pemantauan, dan pengelolaan
+        fasilitas menjadi lebih mudah dan terorganisasi.
+      </p>
+
+      <div class="banner-features">
+
+        <div class="banner-feature">
+          <span class="feature-check">✓</span>
+          Pelaporan fasilitas dengan mudah
+        </div>
+
+        <div class="banner-feature">
+          <span class="feature-check">✓</span>
+          Pemantauan status laporan
+        </div>
+
+        <div class="banner-feature">
+          <span class="feature-check">✓</span>
+          Pengelolaan laporan terpusat
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="banner-footer">
+      © 2026 SIFORA. Sistem Informasi Fasilitas dan Pelaporan.
+    </div>
+
+  </div>
+
+
+  <div class="login-side">
+
+    <div class="login-box">
+
+      <div class="logo small-logo">
+        <div class="logo-icon">S</div>
+        <span>SIFORA</span>
+      </div>
+
+      <h2>Selamat Datang!</h2>
+
+      <p class="login-description">
+        Masuk ke akun Anda untuk mulai menggunakan
+        sistem pelaporan fasilitas.
+      </p>
+
+      <form id="loginForm">
+
+        <div class="field">
+          <label>Username</label>
+          <input id="username" required placeholder="Masukkan username">
+        </div>
+
+        <div class="field">
+          <label>Password</label>
+          <input id="password" type="password" required placeholder="Masukkan password">
+        </div>
+
+        <button type="submit" class="primary-btn login-submit">
+          Masuk ke Dashboard →
+        </button>
+
+        <p id="loginError" class="login-error"></p>
+
+      </form>
+
+      <div class="demo-account">
+        <strong>AKUN DEMONSTRASI</strong><br>
+        Admin: <b>admin</b> / <b>admin123</b><br>
+        Pelapor: <b>pelapor</b> / <b>lapor123</b>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= APLIKASI ================= -->
+
+<section id="appPage" class="app hidden">
+
+
+  <!-- SIDEBAR -->
+
+  <aside class="sidebar">
+
+    <div class="logo">
+      <div class="logo-icon">S</div>
+      <span>SIFORA</span>
+    </div>
+
+    <p class="menu-label">MENU UTAMA</p>
+
+    <nav class="nav-menu">
+
+      <div id="adminNav" class="nav-item hidden">
+        <span class="nav-icon">▦</span>
+        Dashboard Admin
+      </div>
+
+      <div id="reporterNav" class="nav-item hidden">
+        <span class="nav-icon">▤</span>
+        Dashboard Pelapor
+      </div>
+
+      <div id="formNav" class="nav-item hidden">
+        <span class="nav-icon">＋</span>
+        Buat Laporan
+      </div>
+
+    </nav>
+
+    <div class="sidebar-bottom">
+
+      <div class="account-box">
+        <div class="avatar">U</div>
+
+        <div class="account-info">
+          <strong id="accountName">Pengguna</strong>
+          <span id="accountRole">Pengguna</span>
+        </div>
+      </div>
+
+      <button class="logout-btn" id="logoutBtn">
+        ↪ &nbsp; Logout / Keluar
+      </button>
+
+    </div>
+
+  </aside>
+
+
+  <!-- KONTEN UTAMA -->
+
+  <div class="main-area">
+
+    <header class="topbar">
+
+      <div class="topbar-title" id="topbarTitle">
+        Dashboard
+      </div>
+
+      <div class="topbar-right">
+        <span class="online-dot"></span>
+        Sistem Aktif
+      </div>
+
+    </header>
+
+
+    <main class="content">
+
+
+      <!-- ================= DASHBOARD ADMIN ================= -->
+
+      <section id="adminPage" class="hidden">
+
+        <div class="welcome">
+
+          <div>
+            <h1>Dashboard Admin</h1>
+            <p>
+              Selamat datang! Pantau dan kelola laporan fasilitas
+              yang masuk melalui SIFORA.
+            </p>
+          </div>
+
+          <div class="date-label" id="adminDate"></div>
+
+        </div>
+
+
+        <div class="stats-grid">
+
+          <div class="stat-card">
+            <div class="stat-top">
+              <p>Total Laporan</p>
+              <div class="stat-icon blue-bg">▤</div>
+            </div>
+            <div class="stat-number" id="totalReports">0</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-top">
+              <p>Menunggu</p>
+              <div class="stat-icon orange-bg">◷</div>
+            </div>
+            <div class="stat-number" id="waitingReports">0</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-top">
+              <p>Diproses</p>
+              <div class="stat-icon blue-bg">⚙</div>
+            </div>
+            <div class="stat-number" id="processingReports">0</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-top">
+              <p>Selesai</p>
+              <div class="stat-icon green-bg">✓</div>
+            </div>
+            <div class="stat-number" id="doneReports">0</div>
+          </div>
+
+        </div>
+
+
+        <div class="panel">
+
+          <div class="panel-header">
+            <div>
+              <h2>Daftar Laporan Fasilitas</h2>
+              <p>Kelola seluruh laporan yang dikirim oleh pelapor.</p>
+            </div>
+          </div>
+
+          <div class="filter-row">
+
+            <input
+              type="search"
+              id="searchReport"
+              placeholder="Cari judul, nama pelapor, atau lokasi..."
+            >
+
+            <select id="statusFilter">
+              <option value="">Semua Status</option>
+              <option>Menunggu</option>
+              <option>Diproses</option>
+              <option>Selesai</option>
+              <option>Ditolak</option>
+            </select>
+
+            <select id="categoryFilter">
+              <option value="">Semua Kategori</option>
+              <option>Ruang Kelas</option>
+              <option>Toilet</option>
+              <option>Laboratorium</option>
+              <option>Perpustakaan</option>
+              <option>Peralatan</option>
+              <option>Lainnya</option>
+            </select>
+
+          </div>
+
+          <div id="adminReports" class="report-list"></div>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- ================= DASHBOARD PELAPOR ================= -->
+
+      <section id="reporterPage" class="hidden">
+
+        <div class="welcome">
+
+          <div>
+            <h1>Halo, <span id="reporterName"></span>!</h1>
+
+            <p>
+              Sampaikan laporan apabila menemukan fasilitas
+              yang mengalami kerusakan.
+            </p>
+          </div>
+
+          <div class="date-label" id="reporterDate"></div>
+
+        </div>
+
+
+        <div class="stats-grid">
+
+          <div class="stat-card">
+            <div class="stat-top">
+              <p>Total Laporan Saya</p>
+              <div class="stat-icon blue-bg">▤</div>
+            </div>
+            <div class="stat-number" id="myTotal">0</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-top">
+              <p>Menunggu</p>
+              <div class="stat-icon orange-bg">◷</div>
+            </div>
+            <div class="stat-number" id="myWaiting">0</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-top">
+              <p>Diproses</p>
+              <div class="stat-icon blue-bg">⚙</div>
+            </div>
+            <div class="stat-number" id="myProcessing">0</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-top">
+              <p>Selesai</p>
+              <div class="stat-icon green-bg">✓</div>
+            </div>
+            <div class="stat-number" id="myDone">0</div>
+          </div>
+
+        </div>
+
+
+        <!-- FORM LAPORAN -->
+
+        <div class="panel" id="reportFormPanel">
+
+          <div class="panel-header">
+            <div>
+              <h2>Buat Laporan Kerusakan</h2>
+              <p>Isi informasi fasilitas yang mengalami kerusakan.</p>
+            </div>
+          </div>
+
+
+          <form id="reportForm">
+
+            <div class="form-grid">
+
+              <div class="form-field">
+                <label>Nama Pelapor</label>
+                <input id="reporterInput" required placeholder="Masukkan nama lengkap">
+              </div>
+
+              <div class="form-field">
+                <label>Judul Laporan</label>
+                <input id="reportTitle" required placeholder="Contoh: Kerusakan meja kelas">
+              </div>
+
+              <div class="form-field">
+                <label>Kategori Fasilitas</label>
+
+                <select id="reportCategory" required>
+                  <option value="">Pilih kategori</option>
+                  <option>Ruang Kelas</option>
+                  <option>Toilet</option>
+                  <option>Laboratorium</option>
+                  <option>Perpustakaan</option>
+                  <option>Peralatan</option>
+                  <option>Lainnya</option>
+                </select>
+
+              </div>
+
+              <div class="form-field">
+                <label>Lokasi Kerusakan</label>
+                <input id="reportLocation" required placeholder="Contoh: Ruang kelas XII RPL">
+              </div>
+
+              <div class="form-field">
+                <label>Prioritas Kerusakan</label>
+
+                <select id="reportPriority" required>
+                  <option value="">Pilih prioritas</option>
+                  <option>Rendah</option>
+                  <option>Sedang</option>
+                  <option>Tinggi</option>
+                </select>
+
+              </div>
+
+              <div class="form-field full">
+                <label>Deskripsi Kerusakan</label>
+
+                <textarea
+                  id="reportDescription"
+                  required
+                  placeholder="Jelaskan kondisi fasilitas yang mengalami kerusakan..."
+                ></textarea>
+
+              </div>
+
+              <div class="form-field full">
+
+                <label>Foto Fasilitas</label>
+
+                <input
+                  type="file"
+                  id="reportPhoto"
+                  accept="image/jpeg,image/png,image/webp"
+                >
+
+                <p class="upload-hint">
+                  Format JPG, PNG, WEBP. Maksimal ukuran 1 MB.
+                </p>
+
+                <img
+                  id="photoPreview"
+                  class="preview hidden"
+                  alt="Pratinjau foto"
+                >
+
+              </div>
+
+            </div>
+
+            <button class="primary-btn" type="submit">
+              Kirim Laporan →
+            </button>
+
+            <p id="reportMessage" class="form-message"></p>
+
+          </form>
+
+        </div>
+
+
+        <!-- RIWAYAT PELAPOR -->
+
+        <div class="panel">
+
+          <div class="panel-header">
+            <div>
+              <h2>Riwayat Laporan Saya</h2>
+              <p>Pantau perkembangan laporan yang telah dikirim.</p>
+            </div>
+          </div>
+
+          <div id="reporterReports" class="report-list"></div>
+
+        </div>
+
+      </section>
+
+
+    </main>
+
+
+    <footer class="footer">
+      © 2026 SIFORA - Sistem Informasi Fasilitas dan Pelaporan
+    </footer>
+
+  </div>
+
+</section>
+
+
+<script>
+
+/* ================= AKUN DEMO ================= */
+
+const accounts = [
+  {
+    username: "admin",
+    password: "admin123",
+    role: "admin",
+    name: "Administrator"
+  },
+  {
+    username: "pelapor",
+    password: "lapor123",
+    role: "pelapor",
+    name: "Pengguna"
+  }
+];
+
+const STORAGE_KEY = "sifora_reports_v2";
+
+let currentUser = null;
+let photoData = "";
+
+
+/* ================= PENYIMPANAN ================= */
+
+function getReports() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+  } catch (error) {
+    return [];
+  }
+}
+
+function saveReports(data) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    return true;
+  } catch (error) {
+    alert("Penyimpanan penuh. Gunakan foto dengan ukuran lebih kecil.");
+    return false;
+  }
+}
+
+
+/* ================= KEAMANAN TEKS ================= */
+
+function safe(value) {
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#039;"
+  })[char]);
+}
+
+
+/* ================= TANGGAL ================= */
+
+function showDate() {
+  return new Date().toLocaleDateString("id-ID", {
+    day: "numeric",
+    month: "long",
+    year: "numeric"
+  });
+}
+
+
+/* ================= LOGIN ================= */
+
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+
+  event.preventDefault();
+
+  const username = document.getElementById("username").value.trim();
+  const password = document.getElementById("password").value;
+
+  const user = accounts.find(account =>
+    account.username === username &&
+    account.password === password
+  );
+
+  if (!user) {
+    document.getElementById("loginError").textContent =
+      "Username atau password tidak sesuai.";
+    return;
+  }
+
+  currentUser = user;
+
+  document.getElementById("loginError").textContent = "";
+
+  openDashboard();
+
+});
+
+
+/* ================= BUKA DASHBOARD ================= */
+
+function openDashboard() {
+
+  document.getElementById("loginPage").classList.add("hidden");
+
+  document.getElementById("appPage").classList.remove("hidden");
+
+  document.getElementById("accountName").textContent = currentUser.name;
+
+  document.getElementById("accountRole").textContent =
+    currentUser.role === "admin" ? "Administrator" : "Pelapor";
+
+  if (currentUser.role === "admin") {
+
+    document.getElementById("adminPage").classList.remove("hidden");
+    document.getElementById("reporterPage").classList.add("hidden");
+
+    document.getElementById("adminNav").classList.remove("hidden");
+    document.getElementById("reporterNav").classList.add("hidden");
+    document.getElementById("formNav").classList.add("hidden");
+
+    document.getElementById("adminNav").classList.add("active");
+
+    document.getElementById("topbarTitle").textContent =
+      "Dashboard Admin";
+
+    document.getElementById("adminDate").textContent = showDate();
+
+    renderAdmin();
+
+  } else {
+
+    document.getElementById("reporterPage").classList.remove("hidden");
+    document.getElementById("adminPage").classList.add("hidden");
+
+    document.getElementById("adminNav").classList.add("hidden");
+    document.getElementById("reporterNav").classList.remove("hidden");
+    document.getElementById("formNav").classList.remove("hidden");
+
+    document.getElementById("reporterNav").classList.add("active");
+    document.getElementById("formNav").classList.remove("active");
+
+    document.getElementById("topbarTitle").textContent =
+      "Dashboard Pelapor";
+
+    document.getElementById("reporterDate").textContent = showDate();
+
+    document.getElementById("reporterName").textContent =
+      currentUser.name;
+
+    document.getElementById("reporterInput").value =
+      currentUser.name;
+
+    renderReporter();
+
+  }
+
+}
+
+
+/* ================= NAVIGASI PELAPOR ================= */
+
+document.getElementById("reporterNav").addEventListener("click", function() {
+
+  document.getElementById("reporterPage").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+
+  document.getElementById("topbarTitle").textContent =
+    "Dashboard Pelapor";
+
+  this.classList.add("active");
+  document.getElementById("formNav").classList.remove("active");
+
+});
+
+document.getElementById("formNav").addEventListener("click", function() {
+
+  document.getElementById("reportFormPanel").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+
+  document.getElementById("topbarTitle").textContent =
+    "Buat Laporan";
+
+  this.classList.add("active");
+  document.getElementById("reporterNav").classList.remove("active");
+
+});
+
+
+/* ================= LOGOUT ================= */
+
+document.getElementById("logoutBtn").addEventListener("click", function() {
+
+  const confirmation = confirm("Apakah Anda yakin ingin keluar dari akun?");
+
+  if (!confirmation) return;
+
+  currentUser = null;
+  photoData = "";
+
+  document.getElementById("appPage").classList.add("hidden");
+  document.getElementById("loginPage").classList.remove("hidden");
+
+  document.getElementById("loginForm").reset();
+  document.getElementById("reportForm").reset();
+
+  document.getElementById("photoPreview").classList.add("hidden");
+
+  document.getElementById("loginError").textContent = "";
+  document.getElementById("reportMessage").textContent = "";
+
+  document.getElementById("searchReport").value = "";
+  document.getElementById("statusFilter").value = "";
+  document.getElementById("categoryFilter").value = "";
+
+  window.scrollTo(0, 0);
+
+});
+
+
+/* ================= UPLOAD FOTO ================= */
+
+document.getElementById("reportPhoto").addEventListener("change", function() {
+
+  const file = this.files[0];
+
+  photoData = "";
+
+  const preview = document.getElementById("photoPreview");
+
+  preview.classList.add("hidden");
+
+  if (!file) return;
+
+  const allowed = [
+    "image/jpeg",
+    "image/png",
+    "image/webp"
+  ];
+
+  if (!allowed.includes(file.type)) {
+    alert("Format foto harus JPG, PNG, atau WEBP.");
+    this.value = "";
+    return;
+  }
+
+  if (file.size > 1024 * 1024) {
+    alert("Ukuran foto maksimal 1 MB.");
+    this.value = "";
+    return;
+  }
+
+  const reader = new FileReader();
+
+  reader.onload = function(event) {
+
+    photoData = event.target.result;
+
+    preview.src = photoData;
+    preview.classList.remove("hidden");
+
+  };
+
+  reader.readAsDataURL(file);
+
+});
+
+
+/* ================= KIRIM LAPORAN ================= */
+
+document.getElementById("reportForm").addEventListener("submit", function(event) {
+
+  event.preventDefault();
+
+  if (!currentUser || currentUser.role !== "pelapor") return;
+
+  const report = {
+
+    id: Date.now(),
+
+    username: currentUser.username,
+
+    name: document.getElementById("reporterInput").value.trim(),
+
+    title: document.getElementById("reportTitle").value.trim(),
+
+    category: document.getElementById("reportCategory").value,
+
+    location: document.getElementById("reportLocation").value.trim(),
+
+    priority: document.getElementById("reportPriority").value,
+
+    description: document.getElementById("reportDescription").value.trim(),
+
+    photo: photoData,
+
+    status: "Menunggu",
+
+    date: new Date().toLocaleString("id-ID")
+
+  };
+
+  if (
+    !report.name ||
+    !report.title ||
+    !report.category ||
+    !report.location ||
+    !report.priority ||
+    !report.description
+  ) {
+    alert("Mohon lengkapi semua data laporan.");
+    return;
+  }
+
+  const reports = getReports();
+
+  reports.unshift(report);
+
+  if (!saveReports(reports)) return;
+
+  this.reset();
+
+  document.getElementById("reporterInput").value = currentUser.name;
+
+  document.getElementById("photoPreview").classList.add("hidden");
+
+  document.getElementById("reportMessage").textContent =
+    "✓ Laporan berhasil dikirim.";
+
+  photoData = "";
+
+  renderReporter();
+
+});
+
+
+/* ================= BADGE STATUS ================= */
+
+function statusClass(status) {
+
+  if (status === "Menunggu") return "tag-waiting";
+
+  if (status === "Diproses") return "tag-process";
+
+  if (status === "Selesai") return "tag-done";
+
+  if (status === "Ditolak") return "tag-rejected";
+
+  return "";
+
+}
+
+
+/* ================= KARTU LAPORAN ================= */
+
+function createReportCard(report, isAdmin = false) {
+
+  const image = report.photo
+    ? `<img class="report-image" src="${report.photo}" alt="Foto kerusakan">`
+    : `<div class="report-image"></div>`;
+
+  let adminControl = "";
+
+  if (isAdmin) {
+
+    adminControl = `
+      <label class="upload-hint">Ubah status laporan:</label>
+
+      <select class="status-select" data-id="${report.id}">
+
+        ${["Menunggu", "Diproses", "Selesai", "Ditolak"].map(status => `
+          <option value="${status}" ${report.status === status ? "selected" : ""}>
+            ${status}
+          </option>
+        `).join("")}
+
+      </select>
+    `;
+
+  }
+
+  return `
+
+    <article class="report-card">
+
+      ${image}
+
+      <div class="report-body">
+
+        <h3>${safe(report.title)}</h3>
+
+        <div class="report-details">
+
+          Pelapor: ${safe(report.name)}<br>
+
+          Kategori: ${safe(report.category)}<br>
+
+          Lokasi: ${safe(report.location)}<br>
+
+          Prioritas: ${safe(report.priority)}<br>
+
+          Tanggal: ${safe(report.date)}<br>
+
+          Deskripsi: ${safe(report.description)}
+
+        </div>
+
+        <div class="report-tags">
+
+          <span class="tag ${statusClass(report.status)}">
+            ${safe(report.status)}
+          </span>
+
+          <span class="tag">
+            ${safe(report.priority)}
+          </span>
+
+        </div>
+
+        ${adminControl}
+
+      </div>
+
+    </article>
+
+  `;
+
+}
+
+
+/* ================= DASHBOARD PELAPOR ================= */
+
+function renderReporter() {
+
+  if (!currentUser) return;
+
+  const reports = getReports().filter(report =>
+    report.username === currentUser.username
+  );
+
+  document.getElementById("myTotal").textContent =
+    reports.length;
+
+  document.getElementById("myWaiting").textContent =
+    reports.filter(report => report.status === "Menunggu").length;
+
+  document.getElementById("myProcessing").textContent =
+    reports.filter(report => report.status === "Diproses").length;
+
+  document.getElementById("myDone").textContent =
+    reports.filter(report => report.status === "Selesai").length;
+
+  document.getElementById("reporterReports").innerHTML = reports.length
+
+    ? reports.map(report => createReportCard(report)).join("")
+
+    : `
+      <div class="empty-state">
+        <div class="empty-icon">📋</div>
+        <p>Belum ada laporan.</p>
+        <p class="upload-hint">Silakan buat laporan fasilitas yang mengalami kerusakan.</p>
+      </div>
+    `;
+
+}
+
+
+/* ================= DASHBOARD ADMIN ================= */
+
+function renderAdmin() {
+
+  if (!currentUser || currentUser.role !== "admin") return;
+
+  const reports = getReports();
+
+  document.getElementById("totalReports").textContent =
+    reports.length;
+
+  document.getElementById("waitingReports").textContent =
+    reports.filter(report => report.status === "Menunggu").length;
+
+  document.getElementById("processingReports").textContent =
+    reports.filter(report => report.status === "Diproses").length;
+
+  document.getElementById("doneReports").textContent =
+    reports.filter(report => report.status === "Selesai").length;
+
+
+  const search = document.getElementById("searchReport").value.toLowerCase();
+
+  const status = document.getElementById("statusFilter").value;
+
+  const category = document.getElementById("categoryFilter").value;
+
+
+  const filtered = reports.filter(report => {
+
+    const searchMatch = [
+      report.title,
+      report.name,
+      report.location
+    ].some(value =>
+      String(value).toLowerCase().includes(search)
+    );
+
+    return searchMatch &&
+      (!status || report.status === status) &&
+      (!category || report.category === category);
+
+  });
+
+
+  document.getElementById("adminReports").innerHTML = filtered.length
+
+    ? filtered.map(report => createReportCard(report, true)).join("")
+
+    : `
+      <div class="empty-state">
+        <div class="empty-icon">📂</div>
+        <p>Tidak ada laporan yang ditemukan.</p>
+      </div>
+    `;
+
+}
+
+
+/* ================= PENCARIAN ================= */
+
+document.getElementById("searchReport").addEventListener("input", renderAdmin);
+
+document.getElementById("statusFilter").addEventListener("change", renderAdmin);
+
+document.getElementById("categoryFilter").addEventListener("change", renderAdmin);
+
+
+/* ================= UBAH STATUS ADMIN ================= */
+
+document.getElementById("adminReports").addEventListener("change", function(event) {
+
+  if (!event.target.matches(".status-select")) return;
+
+  if (!currentUser || currentUser.role !== "admin") return;
+
+  const id = Number(event.target.dataset.id);
+
+  const reports = getReports();
+
+  const report = reports.find(item => item.id === id);
+
+  if (!report) return;
+
+  report.status = event.target.value;
+
+  if (saveReports(reports)) {
+    renderAdmin();
+  }
+
+});
+/* =====================================
+   FITUR PESAN MASUK DARI CONTACT
+===================================== */
+
+const contactNav = document.createElement("div");
+contactNav.id = "contactNav";
+contactNav.className = "nav-item hidden";
+contactNav.innerHTML = `
+    <span class="nav-icon">✉</span>
+    Pesan Masuk
+`;
+
+document.querySelector(".nav-menu").appendChild(contactNav);
+
+
+// Membuat halaman pesan masuk
+const contactPage = document.createElement("section");
+contactPage.id = "contactMessagesPage";
+contactPage.className = "hidden";
+
+contactPage.innerHTML = `
+    <div class="welcome">
+        <div>
+            <h1>Pesan Masuk</h1>
+            <p>Daftar pesan yang dikirim melalui halaman Contact SIFORA.</p>
+        </div>
+        <div class="date-label" id="contactMessagesDate"></div>
+    </div>
+
+    <div class="panel">
+        <div class="panel-header">
+            <div>
+                <h2>Daftar Pesan dari Contact</h2>
+                <p id="contactMessageCount">0 pesan diterima.</p>
+            </div>
+        </div>
+
+        <div id="contactMessageList" class="message-list"></div>
+    </div>
+`;
+
+document.querySelector("main.content").appendChild(contactPage);
+
+
+// Tampilan pesan
+const contactStyle = document.createElement("style");
+
+contactStyle.textContent = `
+.message-list {
+    display: grid;
+    gap: 14px;
+}
+
+.message-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+}
+
+.message-card h3 {
+    font-size: 15px;
+    margin-bottom: 8px;
+}
+
+.message-meta {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 12px;
+    overflow-wrap: anywhere;
+}
+
+.message-content {
+    background: #f5f7fc;
+    padding: 13px;
+    border-radius: 9px;
+    font-size: 13px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.delete-message-btn {
+    background: #fff0f1;
+    color: #d74d59;
+    padding: 9px 13px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    margin-top: 12px;
+}
+`;
+
+document.head.appendChild(contactStyle);
+
+
+// Mengambil data pesan dari halaman Contact
+function getContactMessages() {
+    try {
+        return JSON.parse(
+            localStorage.getItem("sifora_pesan_kontak") || "[]"
+        );
+    } catch (error) {
+        return [];
+    }
+}
+
+
+// Menampilkan pesan
+function renderContactMessages() {
+
+    if (!currentUser || currentUser.role !== "admin") {
+        return;
+    }
+
+    const messages = getContactMessages();
+
+    const list = document.getElementById("contactMessageList");
+
+    document.getElementById("contactMessageCount").textContent =
+        messages.length + " pesan diterima.";
+
+    if (messages.length === 0) {
+
+        list.innerHTML = `
+            <div class="empty-state">
+                <div class="empty-icon">✉️</div>
+                <p>Belum ada pesan masuk.</p>
+                <p class="upload-hint">
+                    Pesan dari halaman Contact akan tampil di sini.
+                </p>
+            </div>
+        `;
+
+        return;
+    }
+
+    list.innerHTML = messages.map((message, index) => `
+        <div class="message-card">
+
+            <h3>${safe(message.nama || "Tanpa nama")}</h3>
+
+            <div class="message-meta">
+                Email: ${safe(message.email || "-")}<br>
+                Tanggal: ${safe(message.tanggal || "-")}
+            </div>
+
+            <div class="message-content">${safe(message.pesan || "")}</div>
+
+            <button
+                class="delete-message-btn"
+                data-index="${index}"
+                type="button">
+                Hapus Pesan
+            </button>
+
+        </div>
+    `).join("");
+}
+
+
+// Menu Pesan Masuk
+contactNav.addEventListener("click", function() {
+
+    if (!currentUser || currentUser.role !== "admin") {
+        return;
+    }
+
+    document.getElementById("adminPage").classList.add("hidden");
+    document.getElementById("contactMessagesPage").classList.remove("hidden");
+
+    document.getElementById("adminNav").classList.remove("active");
+    contactNav.classList.add("active");
+
+    document.getElementById("topbarTitle").textContent = "Pesan Masuk";
+
+    document.getElementById("contactMessagesDate").textContent = showDate();
+
+    renderContactMessages();
+
+});
+
+
+// Kembali ke Dashboard Admin
+document.getElementById("adminNav").addEventListener("click", function() {
+
+    if (!currentUser || currentUser.role !== "admin") {
+        return;
+    }
+
+    document.getElementById("adminPage").classList.remove("hidden");
+    document.getElementById("contactMessagesPage").classList.add("hidden");
+
+    document.getElementById("adminNav").classList.add("active");
+    contactNav.classList.remove("active");
+
+    document.getElementById("topbarTitle").textContent = "Dashboard Admin";
+
+    renderAdmin();
+
+});
+
+
+// Hapus pesan
+document.getElementById("contactMessageList").addEventListener("click", function(event) {
+
+    const button = event.target.closest(".delete-message-btn");
+
+    if (!button || !currentUser || currentUser.role !== "admin") {
+        return;
+    }
+
+    const index = Number(button.dataset.index);
+
+    const messages = getContactMessages();
+
+    if (!confirm("Apakah Anda yakin ingin menghapus pesan ini?")) {
+        return;
+    }
+
+    messages.splice(index, 1);
+
+    localStorage.setItem(
+        "sifora_pesan_kontak",
+        JSON.stringify(messages)
+    );
+
+    renderContactMessages();
+
+});
+
+
+// Menampilkan menu hanya untuk Admin
+const originalOpenDashboard = openDashboard;
+
+openDashboard = function() {
+
+    originalOpenDashboard();
+
+    if (currentUser && currentUser.role === "admin") {
+        contactNav.classList.remove("hidden");
+    } else {
+        contactNav.classList.add("hidden");
+    }
+
+};
+</script>
+
+</body>
+</html>
+
+

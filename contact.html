@@ -1,0 +1,263 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact - SIFORA</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', Arial, sans-serif;
+}
+
+body {
+    background: #f5f7fc;
+    color: #202b43;
+}
+
+header {
+    background: white;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: #315ee8;
+    font-size: 23px;
+    font-weight: 800;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #52617b;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+nav a:hover {
+    color: #315ee8;
+}
+
+.tombol {
+    background: #315ee8;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 9px;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.banner {
+    background: linear-gradient(135deg, #193b91, #386ef0);
+    color: white;
+    padding: 55px 7%;
+}
+
+.banner h1 {
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+.banner p {
+    color: #e0e9ff;
+    font-size: 14px;
+}
+
+.content {
+    max-width: 750px;
+    background: white;
+    margin: 35px auto;
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid #e9edf5;
+}
+
+.content h2 {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.content p {
+    color: #8490a5;
+    font-size: 13px;
+    margin-bottom: 22px;
+    line-height: 1.7;
+}
+
+.field {
+    margin-bottom: 18px;
+}
+
+.field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.field input,
+.field textarea {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #e9edf5;
+    border-radius: 9px;
+    outline: none;
+    font-size: 13px;
+}
+
+.field input:focus,
+.field textarea:focus {
+    border-color: #315ee8;
+}
+
+.field textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+footer {
+    background: white;
+    border-top: 1px solid #e9edf5;
+    padding: 22px;
+    text-align: center;
+    color: #8490a5;
+    font-size: 12px;
+}
+
+@media(max-width: 700px) {
+    header {
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 13px;
+    }
+
+    .content {
+        margin: 20px 15px;
+        padding: 22px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">SIFORA</div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="app.html" class="tombol">Masuk Aplikasi</a>
+    </nav>
+</header>
+
+<section class="banner">
+    <h1>Contact</h1>
+    <p>Kirim pesan dan masukan mengenai website SIFORA.</p>
+</section>
+
+<section class="content">
+
+    <h2>Hubungi Kami</h2>
+
+    <p>
+        Silakan isi formulir berikut untuk memberikan pertanyaan,
+        saran, atau masukan mengenai website SIFORA.
+    </p>
+
+    <form id="contactForm">
+
+        <div class="field">
+            <label for="nama">Nama Lengkap</label>
+            <input type="text" id="nama"
+                   placeholder="Masukkan nama lengkap" required>
+        </div>
+
+        <div class="field">
+            <label for="email">Alamat Email</label>
+            <input type="email" id="email"
+                   placeholder="Masukkan email" required>
+        </div>
+
+        <div class="field">
+            <label for="pesan">Pesan</label>
+            <textarea id="pesan"
+                      placeholder="Tuliskan pesan kamu..."
+                      required></textarea>
+        </div>
+
+        <button type="submit" class="tombol">
+            Kirim Pesan →
+        </button>
+
+    </form>
+
+</section>
+
+<footer>
+    © 2026 SIFORA - Sistem Informasi Fasilitas dan Pelaporan
+</footer>
+
+<script>
+document.getElementById("contactForm").addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const nama = document.getElementById("nama").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const pesan = document.getElementById("pesan").value.trim();
+
+    if (!nama || !email || !pesan) {
+        alert("Mohon lengkapi semua kolom!");
+        return;
+    }
+
+    const dataPesan = {
+        nama: nama,
+        email: email,
+        pesan: pesan,
+        tanggal: new Date().toLocaleString("id-ID")
+    };
+
+    const daftarPesan = JSON.parse(
+        localStorage.getItem("sifora_pesan_kontak") || "[]"
+    );
+
+    daftarPesan.push(dataPesan);
+
+    localStorage.setItem(
+        "sifora_pesan_kontak",
+        JSON.stringify(daftarPesan)
+    );
+
+    alert("Terima kasih! Pesan berhasil disimpan.");
+
+    this.reset();
+
+});
+</script>
+
+</body>
+</html>

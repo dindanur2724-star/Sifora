@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About - SIFORA</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', Arial, sans-serif;
+}
+
+body {
+    background: #f5f7fc;
+    color: #202b43;
+}
+
+header {
+    background: white;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: #315ee8;
+    font-size: 23px;
+    font-weight: 800;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #52617b;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+nav a:hover {
+    color: #315ee8;
+}
+
+.tombol {
+    background: #315ee8;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 9px;
+    text-decoration: none;
+}
+
+.banner {
+    background: linear-gradient(135deg, #193b91, #386ef0);
+    color: white;
+    padding: 55px 7%;
+}
+
+.banner h1 {
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+.banner p {
+    color: #e0e9ff;
+    font-size: 14px;
+}
+
+.content {
+    max-width: 900px;
+    background: white;
+    margin: 35px auto;
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid #e9edf5;
+}
+
+.content h2 {
+    font-size: 19px;
+    margin-bottom: 12px;
+    margin-top: 20px;
+}
+
+.content p,
+.content li {
+    color: #65738e;
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+.content ul {
+    padding-left: 22px;
+}
+
+footer {
+    background: white;
+    border-top: 1px solid #e9edf5;
+    padding: 22px;
+    text-align: center;
+    color: #8490a5;
+    font-size: 12px;
+}
+
+@media(max-width: 700px) {
+    header {
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 13px;
+    }
+
+    .content {
+        margin: 20px 15px;
+        padding: 22px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">SIFORA</div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="app.html" class="tombol">Masuk Aplikasi</a>
+    </nav>
+</header>
+
+<section class="banner">
+    <h1>Tentang SIFORA</h1>
+    <p>Mengenal Sistem Informasi Fasilitas dan Pelaporan.</p>
+</section>
+
+<section class="content">
+
+    <h2>Apa Itu SIFORA?</h2>
+
+    <p>
+        SIFORA merupakan singkatan dari Sistem Informasi Fasilitas
+        dan Pelaporan. Website ini dirancang sebagai sarana untuk
+        membantu proses penyampaian laporan kerusakan fasilitas.
+    </p>
+
+    <p>
+        Melalui SIFORA, pengguna dapat mengisi informasi kerusakan,
+        menentukan kategori fasilitas, menambahkan lokasi,
+        memberikan deskripsi, dan mengunggah foto pendukung.
+    </p>
+
+    <h2>Tujuan Pengembangan</h2>
+
+    <ul>
+        <li>Mempermudah penyampaian informasi kerusakan fasilitas.</li>
+        <li>Membantu pemantauan status laporan.</li>
+        <li>Menyajikan informasi laporan secara terorganisasi.</li>
+    </ul>
+
+    <h2>Fitur Website</h2>
+
+    <ul>
+        <li>Login Admin dan Pelapor.</li>
+        <li>Dashboard pengelolaan laporan.</li>
+        <li>Formulir pelaporan kerusakan.</li>
+        <li>Upload foto fasilitas.</li>
+        <li>Pencarian dan filter laporan.</li>
+    </ul>
+
+    <h2>Teknologi yang Digunakan</h2>
+
+    <p>
+        Website SIFORA dibuat menggunakan HTML, CSS, dan JavaScript.
+        Data demonstrasi disimpan sementara menggunakan localStorage
+        pada browser sehingga tidak memerlukan database cloud.
+    </p>
+
+    <br>
+
+    <a href="app.html" class="tombol">Buka Aplikasi SIFORA →</a>
+
+</section>
+
+<footer>
+    © 2026 SIFORA - Sistem Informasi Fasilitas dan Pelaporan
+</footer>
+
+</body>
+</html>
